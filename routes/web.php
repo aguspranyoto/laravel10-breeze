@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/dashboard');
+    // return redirect('/dashboard');
 
+    // ========================== ELOQUENT ORM ============================
+    $user = User::find(10);
+    dd($user->name);
+
+    // ========================== UPDATE DATA =============================
+    // $user = User::find(8);
+    // $user->update([
+    //     'email'=>'safira112@gmail.com'
+    // ]);
+    // dd($users);
+
+    // ========================== DELETE DATA =============================
+    // $user = User::find(7);
+    // $user->delete();
+    // dd($user);
+
+    // ========================== CREATE DATA =============================
+    // $user = User::create([
+    //     'name'=>'safira01',
+    //      'email'=>'safira01@gmail.com',
+    //      'password'=>'password',
+    // ]);
+    // dd($user);
 
     // ========================== QUERY BUILDER ============================
 
