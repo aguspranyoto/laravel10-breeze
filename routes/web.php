@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,59 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
+
+
+    // ========================== QUERY BUILDER ============================
+
+    // ========================== GET ALL DATA =============================
+    // $users = DB::table('users')->get();
+    // dd($users);
+
+    // ========================= GET SINGLE DATA  ==========================
+    // $users = DB::table('users')->where('id',2)->get();
+    // $users = DB::table('users')->find(2);
+    // dd($users);
+
+    // =========================== INSERT DATA =============================
+    // $user = DB::table('users')->insert([
+    //     'name'=>'safira',
+    //     'email'=>'safira@gmail.com',
+    //     'password'=>'password',
+    // ]);
+    // dd($user);
+
+    // =========================== UPDATE DATA =============================
+    // $users = DB::table('users')->where('id',2)->update([
+    //     'name'=>'aguud'
+    // ]);
+    // dd($users);
+
+    // =========================== DELETE DATA =============================
+    // $users = DB::table('users')->where('id',5)->delete();
+    // dd($users);
+
+
+
+
+    
+
+    // =========================== RAW SQL ===========================
+    // fetch all users
+    // $users = DB::select('select * from users');
+    // dd($users);
+
+    // insert to users
+    // $user = DB::insert('insert into users (name,email,password) values(?,?,?) ', ['joko','joko@gmail.com','password']);
+    // dd($user);
+
+    // update user
+    // $user = DB::update("update users set email = ? where id = ? ",['joko@gmail.com',4]);
+    // dd($user);
+
+    // delete user
+    // $user = DB::delete("delete from users where id = ? ",[1]);
+    // dd($user);
 });
 
 Route::get('/dashboard', function () {
