@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Profile\AvatarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +18,11 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    // return redirect('/dashboard');
+    return redirect('/dashboard');
 
     // ========================== ELOQUENT ORM ============================
-    $user = User::find(10);
-    dd($user->name);
+    // $users = User::all();
+    // dd($users);
 
     // ========================== UPDATE DATA =============================
     // $user = User::find(8);
@@ -31,14 +32,14 @@ Route::get('/', function () {
     // dd($users);
 
     // ========================== DELETE DATA =============================
-    // $user = User::find(7);
+    // $user = User::find(12);
     // $user->delete();
     // dd($user);
 
     // ========================== CREATE DATA =============================
     // $user = User::create([
-    //     'name'=>'safira01',
-    //      'email'=>'safira01@gmail.com',
+    //     'name'=>'seto',
+    //      'email'=>'seto@gmail.com',
     //      'password'=>'password',
     // ]);
     // dd($user);
@@ -103,6 +104,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar');
 });
 
 require __DIR__.'/auth.php';

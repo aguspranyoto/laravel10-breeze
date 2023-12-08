@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -19,11 +20,15 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    // MASS ASSIGNMENT
+    protected $fillable = [ //hanya kolom ini yang fillable
         'name',
         'email',
         'password',
+        'avatar',
     ];
+
+    protected $guarded = []; //tidak ada yang di protect = semua kolom sama dengan fillable
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,17 +50,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
     
-    protected function name():Attribute //ACCESSOR: merubah sesuatu setelah di dapat dari database
-    {
-        return Attribute::make(
-            get: fn ($value) => strtoupper($value)
-        );
-    }
+    // protected function name():Attribute //ACCESSOR: merubah sesuatu setelah di dapat dari database
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => Str::upper($value)
+    //     );
+    // }
 
-    protected function password():Attribute //MUTATOR: merubah sesuatu sebelum di kirim ke database
-    {
-        return Attribute::make(
-            set: fn ($value) => bcrypt($value)
-        );
-    }
+    // protected function password():Attribute //MUTATOR: merubah sesuatu sebelum di kirim ke database
+    // {
+    //     return Attribute::make(
+    //         set: fn ($value) => bcrypt($value)
+    //     );
+    // }
 }
